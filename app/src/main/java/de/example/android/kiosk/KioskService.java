@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class KioskService extends Service {
 
-    private static final long INTERVAL = TimeUnit.SECONDS.toMillis(2); // periodic interval to check in seconds -> 2 seconds
+    private static final long INTERVAL = TimeUnit.SECONDS.toMillis(1); // periodic interval to check in seconds -> 2 seconds
     private static final String TAG = KioskService.class.getSimpleName();
 
     private Thread t = null;
@@ -74,7 +74,7 @@ public class KioskService extends Service {
     private void restoreApp() {
         // Restart activity
         Intent i = new Intent(ctx, MainActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         ctx.startActivity(i);
     }
 
