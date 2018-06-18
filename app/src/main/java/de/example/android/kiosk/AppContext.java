@@ -22,6 +22,7 @@ public class AppContext  extends Application {
         registerKioskModeScreenOffReceiver();
         startKioskService();
 
+
     }
 
     private void registerKioskModeScreenOffReceiver() {

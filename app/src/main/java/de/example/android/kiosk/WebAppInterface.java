@@ -4,7 +4,7 @@ import android.content.Context;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
-public class WebAppInterface {
+public class WebAppInterface  {
     Context mContext;
 
     /** Instantiate the interface and set the context */
@@ -15,9 +15,19 @@ public class WebAppInterface {
     /** Show a toast from the web page */
     @JavascriptInterface
     public void showToast(String toast) {
-        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
+       Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
         MainActivity mainActivity= (MainActivity) mContext;
         mainActivity.breakOut();
 
     }
+
+    @JavascriptInterface
+    public void networkListener(boolean status){
+        MainActivity mainActivity= (MainActivity) mContext;
+        mainActivity.networkListener(status);
+
+    }
+
+
+
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Android Kiosk Mode Example</string>
+    <string name="app_name">Patient App</string>
     <string name="hello_world">Hello Kiosk Mode!</string>
     <string name="hiddenBreakoutButton">Hidden Exit Button!</string>
 

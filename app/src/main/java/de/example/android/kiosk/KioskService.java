@@ -1,10 +1,13 @@
 package de.example.android.kiosk;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -13,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 public class KioskService extends Service {
 
-    private static final long INTERVAL = TimeUnit.SECONDS.toMillis(1); // periodic interval to check in seconds -> 2 seconds
+    private static final long INTERVAL = TimeUnit.SECONDS.toMillis(2); // periodic interval to check in seconds -> 1 seconds
     private static final String TAG = KioskService.class.getSimpleName();
 
     private Thread t = null;
@@ -25,6 +28,7 @@ public class KioskService extends Service {
         Log.i(TAG, "Stopping service 'KioskService'");
         running =false;
         super.onDestroy();
+
     }
 
     @Override
@@ -32,7 +36,6 @@ public class KioskService extends Service {
         Log.i(TAG, "Starting service 'KioskService'");
         running = true;
         ctx = this;
-
         // start a thread that periodically checks if your app is in the foreground
         t = new Thread(new Runnable() {
             @Override
@@ -58,10 +61,15 @@ public class KioskService extends Service {
         if(PrefUtils.isKioskModeActive(ctx)) {
             // is App in background?
             if(isInBackground()) {
-                restoreApp(); // restore!
+//                restoreApp(); // restore!
             }
         }
+
     }
+
+
+
+
 
     private boolean isInBackground() {
         ActivityManager am = (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE);
